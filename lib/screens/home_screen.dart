@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final MapController _mapController = MapController();
   bool isFollowingUser = true;
 
-  // 🔥 Dev fake GPS
+  
   LatLng? fakeLocation;
 
   @override
@@ -162,44 +162,53 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
 
-          
-          Expanded(
-            flex: 2,
-            child: FlutterMap(
-              mapController: _mapController,
-              options: MapOptions(
-                initialCenter: LatLng(userLat!, userLng!),
-                initialZoom: 15,
-                onPositionChanged: (position, hasGesture) {
-                  if (hasGesture) {
-                    isFollowingUser = false;
-                  }
-                },
-              ),
-              children: [
-                TileLayer(
-                  urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                ),
+         Expanded(
+  flex: 2,
+  child: FlutterMap(
+    mapController: _mapController,
+    options: MapOptions(
+      initialCenter: LatLng(userLat!, userLng!),
+      initialZoom: 15,
+      onPositionChanged: (position, hasGesture) {
+        if (hasGesture) {
+          isFollowingUser = false;
+        }
+      },
+    ),
+    children: [
+      TileLayer(
+        urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      ),
 
-                MarkerLayer(
-                  markers: [
-                    Marker(
-                      point: LatLng(userLat!, userLng!),
-                      child: const Icon(Icons.person, size: 50, color: Colors.red),
-                    ),
-
-                    
-                    ...fairs.map((fair) => Marker(
-                          point: LatLng(fair.lat, fair.lng),
-                          child: const Icon(Icons.location_on, size: 40, color: Colors.blue),
-                        )),
-                  ],
-                ),
-              ],
-            ),
+      MarkerLayer(
+        markers: [
+          Marker(
+            point: LatLng(userLat!, userLng!),
+            child: const Icon(Icons.person, size: 50, color: Colors.red),
           ),
+          ...fairs.map((fair) => Marker(
+                point: LatLng(fair.lat, fair.lng),
+                child: const Icon(Icons.location_on, size: 40, color: Colors.blue),
+              )),
+        ],
+      ),
 
-          
+      CircleLayer(
+        circles: [
+          if (nearbyFair != null)
+            CircleMarker(
+              point: LatLng(nearbyFair!.lat, nearbyFair!.lng),
+              radius: nearbyFair!.radius,
+              useRadiusInMeter: true,
+              color: Colors.blue.withOpacity(0.3),
+            ),
+        ],
+      ),
+    ],
+  ),
+),
+        
+         
           Expanded(
             flex: 3,
             child: SingleChildScrollView(
@@ -251,6 +260,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
 
+         
+
+        const SizedBox(height: 5),
+
         const SizedBox(height: 8),
 
         //  Location
@@ -292,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         const SizedBox(height: 12),
 
-        //  Status
+        // Status
         Row(
           children: [
             Icon(
@@ -386,7 +399,7 @@ const SizedBox(height: 20),
 Text("Total Points: $totalPoints"),
 
 const SizedBox(height: 20),
-                ],
+                 ],
               ),
             ),
           ),
