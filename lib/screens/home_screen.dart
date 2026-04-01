@@ -162,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
 
-          // 🗺️ 地图（不会再爆）
+          
           Expanded(
             flex: 2,
             child: FlutterMap(
@@ -188,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: const Icon(Icons.person, size: 50, color: Colors.red),
                     ),
 
-                    // ✅ 保留 fair markers
+                    
                     ...fairs.map((fair) => Marker(
                           point: LatLng(fair.lat, fair.lng),
                           child: const Icon(Icons.location_on, size: 40, color: Colors.blue),
@@ -199,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // 📋 UI（可滚动，不会爆）
+          
           Expanded(
             flex: 3,
             child: SingleChildScrollView(
@@ -225,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         const SizedBox(height: 12),
 
-        // 📍 Address（GPS）
+        // Address（GPS）
         Row(
           children: [
             const Icon(Icons.my_location, color: Colors.blue),
@@ -236,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         const SizedBox(height: 12),
 
-        // 🎪 Fair Name
+        //  Fair Name
         Row(
           children: [
             const Icon(Icons.celebration, color: Colors.purple),
@@ -253,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         const SizedBox(height: 8),
 
-        // 📌 Location（你新增的🔥）
+        //  Location
         Row(
           children: [
             const Icon(Icons.location_city, color: Colors.teal),
@@ -267,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         const SizedBox(height: 12),
 
-        // ⭐ Points
+        //  Points
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
@@ -292,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         const SizedBox(height: 12),
 
-        // 🧾 Status
+        //  Status
         Row(
           children: [
             Icon(
@@ -314,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         const SizedBox(height: 12),
 
-        // 🔴 AT FAIR Banner
+        //  AT FAIR Banner
         Container(
           width: double.infinity,
           padding: const EdgeInsets.all(14),
