@@ -41,8 +41,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
                 return ListTile(
                   leading: const Icon(Icons.location_on),
-                title: Text("${item["fairName"]} - ${item["location"]}"),
-                subtitle: Text(item["time"]),
+                  title: Text("${item["fairName"]} - ${item["location"]}"),
+                  subtitle: Text("Points: ${item["points"]}\nChecked in at: ${item["time"]}")
                 );
               },
             ),
